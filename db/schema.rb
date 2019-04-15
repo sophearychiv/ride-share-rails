@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_224708) do
+ActiveRecord::Schema.define(version: 2019_04_15_230057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2019_04_15_224708) do
     t.integer "vin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "trip_id"
+    t.index ["trip_id"], name: "index_drivers_on_trip_id"
   end
 
   create_table "passengers", force: :cascade do |t|
@@ -36,18 +38,26 @@ ActiveRecord::Schema.define(version: 2019_04_15_224708) do
     t.integer "phone_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "trip_id"
+    t.index ["trip_id"], name: "index_passengers_on_trip_id"
   end
 
   create_table "trips", force: :cascade do |t|
-    t.integer "driver_id"
-    t.integer "passenger_id"
     t.date "date"
     t.float "rating"
     t.float "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "driver_id"
+    t.bigint "passenger_id"
+    t.index ["driver_id"], name: "index_trips_on_driver_id"
+    t.index ["passenger_id"], name: "index_trips_on_passenger_id"
   end
 
   add_foreign_key "driver_passengers", "drivers"
   add_foreign_key "driver_passengers", "passengers"
+  add_foreign_key "drivers", "trips"
+  add_foreign_key "passengers", "trips"
+  add_foreign_key "trips", "drivers"
+  add_foreign_key "trips", "passengers"
 end
