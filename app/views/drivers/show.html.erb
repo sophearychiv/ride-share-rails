@@ -22,6 +22,7 @@ $<%= @driver.total_earnings %>
 <br>
 
 <%= link_to "Edit", edit_driver_path(@driver.id)%>
+<%= link_to "Delete", driver_path(@driver.id), :data => {:confirm => 'Are you sure?'}, method: :delete%>
 <%= link_to "Back to All Drivers", drivers_path %>
 <Br>
 <%= link_to "Homepage", "/" %>
