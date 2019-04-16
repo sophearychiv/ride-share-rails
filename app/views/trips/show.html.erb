@@ -1,8 +1,18 @@
 <h1>Trip Show View</h1>
-<br>
+Trip Date: <br>
 <%= @trip.date%>
 <br>
+Trip Rating: <br>
 <%= @trip.rating %><br>
+Trip cost: <br>
+<%= @trip.cost%> <br>
+
+Trip Driver ID: <br>
+<%= @trip.driver_id%> <br>
+
+Trip Passenger ID: <br>
+<%= @trip.passenger_id%><br>
+
 
 
 <%= link_to "Return to All Passengers", passengers_path %>
