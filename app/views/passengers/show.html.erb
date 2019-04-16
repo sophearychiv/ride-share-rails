@@ -14,7 +14,8 @@ This is all the trips the passenger went on: <br>
 <% end %>
 
 <div class="bottom-links">
-<%= link_to "Edit Passenger", edit_passenger_path %> <br>
+<%= link_to "Edit Passenger", edit_passenger_path(@passenger.id) %> <br>
+<%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you'd like to delete this passenger?"} %> <br>
 <%= link_to "Return to All Passengers", passengers_path %> <br>
 <%= link_to "Homepage", "/" %>
 </div>
