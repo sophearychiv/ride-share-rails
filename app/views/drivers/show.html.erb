@@ -5,6 +5,22 @@
 <%= @driver.vin %>
 <br>
 
+This is all the trips this driver went on: <br>
+<% @driver.all_trips.each do |trip |%>
+    <%= trip.id %>,
+    <%= trip.date %>
+    <br>
+<% end %>
+
+This is this driver's average rating: <br>
+<%= @driver.average_rating %>
+<br>
+
+This is the driver's total earnings: <br>
+$<%= @driver.total_earnings %>
+<br>
+
+
 <%= link_to "Back to All Drivers", drivers_path %>
 <Br>
 <%= link_to "Homepage", "/" %>
