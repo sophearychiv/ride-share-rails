@@ -3,6 +3,14 @@
 <br>
 <%= @passenger.phone_num%>
 <br>
+This is the total cost
+<%= @passenger.total_cost %><br>
+This is all the trips the passenger went on: <br>
+<% @passenger.all_trips.each do |trip|%>
+    <%= trip.id %>,
+    <%= trip.date%>
+    <br>
+<% end %>
 
 <%= link_to "Return to All Passengers", passengers_path %>
 <br>
