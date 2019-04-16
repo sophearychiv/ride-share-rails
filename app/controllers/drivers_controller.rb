@@ -11,13 +11,13 @@ class DriversController < ApplicationController
   end
 
   def new
-    @create_driver = Driver.new(trip_id: nil)
+    @driver = Driver.new(trip_id: nil)
   end
 
   def create
-    driver = Driver.new(driver_params)
-    if driver.save
-      redirect_to driver_path(driver.id)
+    @driver = Driver.new(driver_params)
+    if @driver.save
+      redirect_to driver_path(@driver.id)
     else
       render :new
     end
