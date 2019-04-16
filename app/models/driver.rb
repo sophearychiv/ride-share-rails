@@ -13,4 +13,12 @@ class Driver < ApplicationRecord
     end
     return average_rating = (all_ratings.sum / all_ratings.length).to_i
   end
+
+  def total_earnings
+    gross_profit = all_trips.map do |trip|
+      trip.cost
+    end
+    total_earning = (gross_profit.sum - 1.65) * 0.8
+    return total_earning
+  end
 end
