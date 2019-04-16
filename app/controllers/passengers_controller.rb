@@ -11,7 +11,7 @@ class PassengersController < ApplicationController
   end
 
   def new
-    @create_passenger = Passenger.new(trip_id: nil)
+    @passenger = Passenger.new(trip_id: nil)
   end
 
   def create
