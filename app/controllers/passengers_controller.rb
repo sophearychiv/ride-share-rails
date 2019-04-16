@@ -23,6 +23,23 @@ class PassengersController < ApplicationController
     end
   end
 
+  def edit
+    @passenger = Passenger.find_by(id: params[:id])
+  end
+
+  def update
+    @passenger = Passenger.find_by(id: params[:id])
+    is_successful = @passenger.update(passenger_params)
+    if is_successful
+      redirect_to passenger_path
+    else
+      render :edit, status: :bad_request
+    end
+  end
+
+  def delete
+  end
+
   private
 
   def passenger_params
