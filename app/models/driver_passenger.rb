@@ -1,2 +1,0 @@
-class DriverPassenger < ApplicationRecord
-end
