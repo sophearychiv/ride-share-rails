@@ -19,12 +19,15 @@ class DriversController < ApplicationController
     if @driver.save
       redirect_to driver_path(@driver.id)
     else
-      render :new
+      render :new, status: :bad_request
     end
   end
 
   def edit
     @driver = Driver.find_by(id: params[:id])
+    if @driver.nil?
+      redirect_to drivers_path
+    end
   end
 
   def update
