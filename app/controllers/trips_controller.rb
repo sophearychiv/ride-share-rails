@@ -9,13 +9,13 @@ class TripsController < ApplicationController
 
   def show
     if params[:passenger_id]
-      @trip = Trip.where(passenger: Passenger.find_by(id: params[:passenger_id]))
+      @trip = Trip.find_by(passenger: Passenger.find_by(id: params[:passenger_id]))
     else
       @trip = Trip.find_by(id: params[:id])
     end
 
     if @trip.nil?
-      redirect_to trips_path
+      head :not_found
     end
   end
 

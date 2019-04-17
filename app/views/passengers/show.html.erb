@@ -8,7 +8,7 @@ This is the total cost
 This is all the trips the passenger went on: <br>
 <% @passenger.all_trips.each do |trip|%>
     <%# <%= trip.id %>
-    <%= link_to "#{trip.id}", passenger_trip_path(trip.id) %>
+    <%= link_to "#{trip.id}", passenger_trip_path(@passenger.id) %>
     <%= trip.date%>
     <br>
 <% end %>
