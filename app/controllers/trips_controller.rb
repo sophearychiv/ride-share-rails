@@ -1,15 +1,13 @@
 class TripsController < ApplicationController
   def index
-    if params[:passenger_id]
-      @trips = Trip.where(passenger: Passenger.find_by(id: params[:passenger_id]))
-    else
-      @trips = Trip.all.order(:id)
-    end
+    @trips = Trip.all.order(:id)
   end
 
   def show
     if params[:passenger_id]
       @trip = Trip.find_by(passenger: Passenger.find_by(id: params[:passenger_id]))
+    elsif params[:driver_id]
+      @trip = Trip.find_by(driver: Driver.find_by(id: params[:driver_id]))
     else
       @trip = Trip.find_by(id: params[:id])
     end
