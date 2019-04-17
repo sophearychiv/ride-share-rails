@@ -17,17 +17,19 @@ class TripsController < ApplicationController
     end
   end
 
-  # def new
-  #   @trip = Trip.new(passenger_id: Passenger.find_by(id: params[:passenger_id]), driver_id: Driver.find_by(availability: true))
-  # end
+  def new
+    @trip = Trip.new(passenger_id: Passenger.find_by(id: params[:passenger_id]), driver_id: Driver.find_by(availability: true))
+  end
 
   def create
-    @trip = Trip.new(passenger_id: Passenger.find_by(id: params[:passenger_id]), driver_id: Driver.find_by(availability: true).id)
-    if @trip.save
-      redirect_to passenger_trip_path(@trip.id)
-    else
-      render :new
-    end
+    @trip = Trip.create(passenger_id: Passenger.find_by(id: params[:passenger_id]).id, driver_id: Driver.find_by(availability: true).id)
+    # if @trip.save
+    # redirect_to passenger_trip_path(params[:passenger_id])
+    redirect_to "/passengers/#{params[:passenger_id]}/trips/#{@trip.id}"
+    # else
+    # head :not_found
+    # raise
+    # end
   end
 
   private
