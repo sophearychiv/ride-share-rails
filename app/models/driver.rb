@@ -11,6 +11,7 @@ class Driver < ApplicationRecord
     all_ratings = all_trips.map do |trip|
       trip.rating
     end
+    return 0 if all_ratings.empty?
     return average_rating = (all_ratings.sum / all_ratings.length).to_i
   end
 
