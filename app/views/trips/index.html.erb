@@ -1,0 +1,13 @@
+<h1>View for Trips Index</h1>
+<ul>
+<% @trips.each do |trip| %>
+    <li>
+        <%= link_to trip.id, trip_path(trip.id) %>,
+        <%= trip.date %>,
+        <%= trip.rating %>,
+        <%= trip.cost %>
+        <%= trip.passenger_id %>,
+        <%= trip.driver_id %>,
+    </li>
+<% end %>
+</ul>

@@ -1,10 +1,19 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all.order(:id)
+    if params[:passenger_id]
+      @trips = Trip.where(passenger: Passenger.find_by(id: params[:passenger_id]))
+    else
+      @trips = Trip.all.order(:id)
+    end
   end
 
   def show
-    @trip = Trip.find_by(id: params[:id])
+    if params[:passenger_id]
+      @trip = Trip.where(passenger: Passenger.find_by(id: params[:passenger_id]))
+    else
+      @trip = Trip.find_by(id: params[:id])
+    end
+
     if @trip.nil?
       redirect_to trips_path
     end
