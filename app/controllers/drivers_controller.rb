@@ -1,6 +1,7 @@
 class DriversController < ApplicationController
   def index
     @drivers = Driver.all.order(:id)
+    @driver.avaibility = true
   end
 
   def show
