@@ -4,13 +4,14 @@ class TripsController < ApplicationController
   end
 
   def show
-    if params[:passenger_id]
-      @trip = Trip.find_by(passenger: Passenger.find_by(id: params[:passenger_id]))
-    elsif params[:driver_id]
-      @trip = Trip.find_by(driver: Driver.find_by(id: params[:driver_id]))
-    else
-      @trip = Trip.find_by(id: params[:id])
-    end
+    # if
+    # @trip = Trip.find_by(passenger: Passenger.find_by(id: params[:passenger_id]))
+    # elsif params[:driver_id]
+    #   @trip = Trip.find_by(driver: Driver.find_by(id: params[:driver_id]))
+    # else
+    @trip = Trip.find_by(id: params[:id])
+    # raise
+    # end
 
     if @trip.nil?
       head :not_found
@@ -22,14 +23,16 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.create(passenger_id: Passenger.find_by(id: params[:passenger_id]).id, driver_id: Driver.find_by(availability: true).id)
+    @trip = Trip.create(cost: 123, passenger_id: Passenger.find_by(id: params[:passenger_id]).id, driver_id: Driver.find_by(availability: true).id)
     # if @trip.save
     # redirect_to passenger_trip_path(params[:passenger_id])
+    # raise
     redirect_to "/passengers/#{params[:passenger_id]}/trips/#{@trip.id}"
     # else
-    # head :not_found
-    # raise
-    # end
+    if @trip.nil?
+      head :not_found
+      # raise
+    end
   end
 
   private
