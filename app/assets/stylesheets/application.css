@@ -13,3 +13,66 @@
  *= require_tree .
  *= require_self
  */
+
+
+/* HEADER/FOOTER styles */
+ body {
+     font-family: 'Courier New', Courier, monospace;
+     display: grid;
+     grid-template-rows: 70px 20px 80vh 20px;
+ }
+ header {
+     background-color: peachpuff;
+     text-align: center;
+     text-decoration: underline overline;
+     /* margin-left: 10vw;
+     margin-right: 10vw; */
+     padding-top: 1px;
+     padding-bottom: 1px;
+     grid-row: 1;
+ }
+ footer {
+     text-align: center;
+     font-size: 16px;
+     grid-row: 4;
+ }
+
+/* NAV styles */
+nav {
+    background-color: navy;
+    grid-row: 2;
+ }
+nav ul {
+    margin-top: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+}
+nav ul li a:visited {
+    color: white;
+}
+nav ul li a:hover {
+    color: yellow;
+}
+
+/* MAIN homepage styling */
+main {
+    grid-row: 3;
+}
+main.homepage {
+    text-align: center;
+    border: 1px solid;
+    margin-left: 300px;
+    margin-right: 300px;
+    border-radius: 50px;
+}
+main strong.tagline {
+    text-decoration: underline;
+    font-size: 30px;
+}

@@ -10,15 +10,18 @@
   </head>
 
   <body>
-  <header><h1>The Ooobur App</h1></header>
-  <nav>
-  <ul>
-    <li><%= link_to "All Passengers", passengers_path %></li>
-    <li><%= link_to "All Drivers", drivers_path %></li>
-    <li><%= link_to "Create New Passenger", new_passenger_path %></li>
-    <li><%= link_to "Create New Driver", new_driver_path %></li>
-  </ul>
-  </nav>
+    <header><h1>Ooobur</h1></header>
+    <nav>
+      <ul>
+        <li><%= link_to "All Passengers", passengers_path %></li>
+        <li><%= link_to "All Drivers", drivers_path %></li>
+        <li><%= link_to "Create New Passenger", new_passenger_path %></li>
+        <li><%= link_to "Create New Driver", new_driver_path %></li>
+      </ul>
+    </nav>
+    <main>
     <%= yield %>
+    </main>
+    <footer> &copy; Sopheary and Angela; 2010</footer>
   </body>
 </html>
