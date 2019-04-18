@@ -1,7 +1,7 @@
 <h1>Passenger Show View</h1>
  
 <% if @passenger.trips.empty? || !@passenger.trips.last.rating.nil? %>
-    <%= link_to "Request a Ride", "/passengers/#{@passenger.id}/trips", method: :post %>
+    <%= button_to "Request a Ride", "/passengers/#{@passenger.id}/trips", method: :post %>
 <% elsif @passenger.trips.last.rating.nil? %>
     <%= form_with model: @passenger.all_trips.last, class: "trip-rating" do |f| %>
         <%= f.label :rating %>
