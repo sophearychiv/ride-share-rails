@@ -27,12 +27,12 @@ class TripsController < ApplicationController
     # if @trip.save
     # redirect_to passenger_trip_path(params[:passenger_id])
     # raise
-    redirect_to "/passengers/#{params[:passenger_id]}/trips/#{@trip.id}"
-    # else
     if @trip.nil?
       head :not_found
       # raise
     end
+    redirect_to "/passengers/#{params[:passenger_id]}/trips/#{@trip.id}"
+    # else
   end
 
   def edit

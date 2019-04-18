@@ -1,16 +1,4 @@
 <h1>Passenger Show View</h1>
-
-<%# TODO: add a button to create a new trip  %>
-<%# link_to "Request a Ride", passenger_trips_path(@passenger.id), method: :post %>
-<%# if @passenger.trips.last.rating.nil? %>
-    <%# form_with model: @passenger.all_trips.last, class: "trip-rating" do |f| %>
-        <%# f.label :rating %>
-        <%# f.text_field :rating %>
-        <%# f.submit "Submit Rating", class: "trip_rating_btn", method: :patch%>
-    <%# end %>
-<%# else %>
-    <%# link_to "Request a Ride", "/passengers/#{@passenger.id}/trips", method: :post %>
-<%# end %>
  
 <% if @passenger.trips.empty? || !@passenger.trips.last.rating.nil? %>
     <%= link_to "Request a Ride", "/passengers/#{@passenger.id}/trips", method: :post %>
