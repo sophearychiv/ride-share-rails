@@ -1,7 +1,9 @@
 <h1>Passenger Show View</h1>
  
 <% if @passenger.trips.empty? || !@passenger.trips.last.rating.nil? %>
-    <%= button_to "Request a Ride", "/passengers/#{@passenger.id}/trips", method: :post %>
+    <%# button_to "Request a Ride", "/passengers/#{@passenger.id}/trips", method: :post %>
+    <%= button_to "Request a Ride", passenger_trips_path(@passenger.id), method: :post %>
+
 <% elsif @passenger.trips.last.rating.nil? %>
     <%= form_with model: @passenger.all_trips.last, class: "trip-rating" do |f| %>
         <%= f.label :rating %>
@@ -24,8 +26,8 @@ This is the total cost
 <%= @passenger.total_cost %><br>
 This is all the trips the passenger went on: <br>
 <% @passenger.all_trips.each do |trip|%>
-    <%# link_to "#{trip.id}", passenger_trip_path(@passenger.id) %>
-    <%= link_to "#{trip.id}", "/passengers/#{@passenger.id}/trips/#{trip.id}" %>
+    <%= link_to "#{trip.id}", passenger_trip_path(@passenger.id, trip.id) %>
+    <%# link_to "#{trip.id}", "/passengers/#{@passenger.id}/trips/#{trip.id}" %>
     <%= trip.date%>
     <br>
 <% end %>

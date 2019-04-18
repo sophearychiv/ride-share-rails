@@ -31,7 +31,9 @@ class TripsController < ApplicationController
       head :not_found
       # raise
     end
-    redirect_to "/passengers/#{params[:passenger_id]}/trips/#{@trip.id}"
+    # redirect_to "/passengers/#{params[:passenger_id]}/trips/#{@trip.id}"
+    redirect_to passenger_trip_path(params[:passenger_id], @trip.id)
+
     # else
   end
 
