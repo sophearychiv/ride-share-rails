@@ -23,7 +23,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.create(cost: 123, passenger_id: Passenger.find_by(id: params[:passenger_id]).id, driver_id: Driver.find_by(availability: true).id)
+    @trip = Trip.create(passenger_id: Passenger.find_by(id: params[:passenger_id]).id, driver_id: Driver.find_by(availability: true).id, cost: rand(1...100), date: Date.today)
     # if @trip.save
     # redirect_to passenger_trip_path(params[:passenger_id])
     # raise
