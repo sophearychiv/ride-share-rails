@@ -71,8 +71,8 @@ class TripsController < ApplicationController
 
   private
 
-  # def trip_params
-  #   # return params.require(:trip).permit(:date, :rating, :cost)
-  #   return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
-  # end
+  def trip_params
+    # return params.require(:trip).permit(:date, :rating, :cost)
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  end
 end
