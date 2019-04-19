@@ -2,7 +2,9 @@ require "test_helper"
 
 describe DriversController do
   let (:driver) {
-    Driver.create name: "Jane Doe", vin: "12345678901234567"
+    Driver.create(name: "Jane Doe",
+                  vin: "12345678901234567",
+                  availability: true)
   }
   let (:invalid_id) {
     "INVALID ID"
@@ -196,6 +198,43 @@ describe DriversController do
       }.wont_change "Driver.count"
 
       must_respond_with :not_found
+    end
+  end
+
+  describe "toggle_online" do
+    it "changes the driver's availability" do
+      driver = Driver.first
+      driver_hash = {
+        driver: {
+          name: "Sam",
+          vin: "12345678901234567",
+          availability: false,
+        },
+      }
+
+      expect {
+        patch toggle_online_path(driver.id), params: driver_hash
+      }.wont_change "Driver.count"
+
+      driver.reload
+      expect(driver.availability).must_equal false
+      must_respond_with :redirect
+      must_redirect_to driver_path(driver.id)
+    end
+
+    it "redirects to drivers_path if driver_id is invalid" do
+      driver_hash = {
+        driver: {
+          name: "Sam",
+          vin: "12345678901234567",
+          availability: false,
+        },
+      }
+
+      # patch driver_path(-1)
+      patch toggle_online_path(-1), params: driver_hash
+      must_respond_with :redirect
+      must_redirect_to drivers_path
     end
   end
 end

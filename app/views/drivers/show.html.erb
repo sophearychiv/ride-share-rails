@@ -8,8 +8,12 @@
             <li>VIN: <%= @driver.vin %> </li>
         </div>
     </ul>
-<%= button_to @driver.availability, driver_path(@driver.id), method: :patch %>
-
+    <% if @driver.availability == true %>
+        <%#= button_to @driver.availability, driver_path(@driver.id), method: :patch %>
+        <%= link_to "Go Offline", toggle_online_path(@driver.id, driver: {availability: false }), method: :patch %>
+    <% else %>
+        <%= link_to "Go Online", toggle_online_path(@driver.id, driver: {availability: true }), method: :patch %>
+    <% end%>
 
 This is all the trips this driver went on: <br>
 <% @driver.all_trips.each do |trip |%>

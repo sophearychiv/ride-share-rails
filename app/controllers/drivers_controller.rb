@@ -54,9 +54,25 @@ class DriversController < ApplicationController
     end
   end
 
+  def toggle_online
+    driver = Driver.find_by(id: params[:id])
+
+    if driver.nil?
+      redirect_to drivers_path  #, :flash => { :error => "Could not find task id: #{params[:id]}" }
+    else
+      is_successful = driver.update(driver_params)
+      if is_successful
+        redirect_to driver_path(driver.id)
+      else
+        redirect_to drivers_path #, :flash => { :error => "Could not update driver's status" }
+      end
+    end
+    # raise
+  end
+
   private
 
   def driver_params
-    return params.require(:driver).permit(:name, :vin, :availability, :trip_id)
+    return params.require(:driver).permit(:name, :vin, :availability)
   end
 end

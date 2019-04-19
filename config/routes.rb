@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :drivers do
     resources :trips
   end
+
+  patch "/drivers/:id/online", to: "drivers#toggle_online", as: "toggle_online"
 end
