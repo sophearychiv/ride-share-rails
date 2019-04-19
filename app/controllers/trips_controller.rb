@@ -63,7 +63,23 @@ class TripsController < ApplicationController
       if is_successful
         redirect_to trip_path(trip.id)
       else
-        render :edit, status: :bad_request # need to write tests
+        # render :edit, status: :bad_request # need to write tests
+        head :not_found
+      end
+    end
+  end
+
+  def destroy
+    trip = Trip.find_by(id: params[:id])
+
+    if trip.nil?
+      head :not_found
+    else
+      trip.destroy
+      if params[:passenger_id]
+        redirect_to passenger_path(params[:passenger_id])
+      elsif params[:driver_id]
+        redirect_to driver_path(params[:driver_id])
       end
     end
   end

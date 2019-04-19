@@ -1,3 +1,4 @@
+
 <%= form_with model: @trip, class: "edit-trip" do |f| %>
 <p> Edit the trip here: </p>
 
@@ -11,14 +12,10 @@
   <%= f.text_field :rating %>
 
   <%= f.label :passenger %>
-  <%# <%= f.text_field :passenger_id %> 
   <%= f.select :passenger_id, Passenger.all.map {|passenger| [passenger.name, passenger.id]}  %>
-  <%# <%= f.select :passenger_id, Passenger.all.map {|pass| pass.id}  %> 
 
   <%= f.label :driver %>
-  <%# <%= f.text_field :driver_id %>
-  <%= f.select :driver_id, Driver.all.map {|driver| [driver.name, driver.id]} %> 
-  <%# <%= f.select :driver_id, Driver.all.map {|driver| driver.id} %> 
+  <%= f.select :driver_id, Driver.all.map {|driver| [driver.name, driver.id]}  %> 
 
   <%= f.submit "Save Trip", class: "submit-btn" %>
 <% end %>
