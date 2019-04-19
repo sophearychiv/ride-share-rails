@@ -72,20 +72,13 @@ class TripsController < ApplicationController
 
   def destroy
     trip = Trip.find_by(id: params[:id])
-
+    passenger_id = trip.passenger_id
     if trip.nil?
       head :not_found
+      raise
     else
-      if trip.destroy
-        if params[:passenger_id]
-          redirect_to passenger_path(params[:passenger_id])
-        else #params[:driver_id]
-          redirect_to driver_path(params[:driver_id])
-        end
-      else
-        head :not_found
-        #:flash => {:error => "Unable to delete the trip"}
-      end
+      trip.destroy
+      redirect_to passenger_path(passenger_id)
     end
   end
 
