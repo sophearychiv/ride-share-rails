@@ -34,6 +34,7 @@ class TripsController < ApplicationController
       # if @trip.save
       # redirect_to passenger_trip_path(params[:passenger_id])
       # raise
+      driver.update(availability: false)
       redirect_to passenger_trip_path(params[:passenger_id], @trip.id)
     else
       # @trip.nil?

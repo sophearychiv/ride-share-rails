@@ -26,7 +26,7 @@ class Driver < ApplicationRecord
       end
     end
     total_earning = (gross_profit.sum - 1.65) * 0.8
-    return total_earning
+    return total_earning / 100
   end
 
   def available_driver

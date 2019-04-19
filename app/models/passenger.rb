@@ -16,6 +16,6 @@ class Passenger < ApplicationRecord
         total_cost += trip.cost
       end
     end
-    return total_cost
+    return total_cost / 100
   end
 end
