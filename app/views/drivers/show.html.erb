@@ -1,39 +1,50 @@
 <main class="show-one">
 
-    <ul class="personal-info">
+    <ul class="person-info">
         <img src="https://picsum.photos/150/150" >
         <div id="personal-info">
             <li>Name: <%= @driver.name %></li>
             <li>Driver ID: <%= @driver.id %> </li>
             <li>VIN: <%= @driver.vin %> </li>
+            <li>Average Rating: <%= @driver.average_rating %> </li>
+            <li>$<%= @driver.total_earnings %></li>
+            <li><%= link_to "Edit Driver", edit_driver_path(@driver.id)%></li>
+            <li><%= link_to "Delete", driver_path(@driver.id), :data => {:confirm => 'Are you sure?'}, method: :delete%></li>
         </div>
     </ul>
-    <% if @driver.availability == true %>
-        <%#= button_to @driver.availability, driver_path(@driver.id), method: :patch %>
-        <%= link_to "Go Offline", toggle_online_path(@driver.id, driver: {availability: false }), method: :patch %>
-    <% else %>
-        <%= link_to "Go Online", toggle_online_path(@driver.id, driver: {availability: true }), method: :patch %>
-    <% end%>
 
-This is all the trips this driver went on: <br>
-<% @driver.all_trips.each do |trip |%>
-    <%= link_to "#{trip.id}", driver_trip_path(@driver.id, trip.id) %>,
-    <%= trip.date %>
-    <br>
-<% end %>
+    <div class="driver-status">
+        <% if @driver.availability == true %>
+            <%#= button_to @driver.availability, driver_path(@driver.id), method: :patch %>
+            <%= link_to "Go Offline", toggle_online_path(@driver.id, driver: {availability: false }), method: :patch %>
+        <% else %>
+            <%= link_to "Go Online", toggle_online_path(@driver.id, driver: {availability: true }), method: :patch %>
+        <% end%>
+    </div>
 
-This is this driver's average rating: <br>
-<%= @driver.average_rating %>
-<br>
+<div class="table">
+    <h2>Trips</h2>
+    <table>
+        <tr>
+            <th>Trip ID</th>
+            <th>Date</th>
+            <th>Driver</th>
+            <th>Passenger</th>
+            <th>Price</th>
+            <th>Rating</th>
+        </tr>
+        <% @driver.all_trips.each do |trip |%>
+            <tr>
+            <th><%= link_to "#{trip.id}", driver_trip_path(@driver.id, trip.id) %></th>
+            <th><%= trip.date %></th>
+            <th> <%=trip.driver.name%> </th>
+            <th><%= trip.passenger.name%> </th>
+            <th>$<%= trip.cost%> </th>
+            <th><%= trip.rating%> </th>
+            </tr>
+        <% end %>
+    </table>
+</div>
 
-This is the driver's total earnings: <br>
-$<%= @driver.total_earnings %>
-<br>
-
-<%= link_to "Edit", edit_driver_path(@driver.id)%>
-<%= link_to "Delete", driver_path(@driver.id), :data => {:confirm => 'Are you sure?'}, method: :delete%>
-<%= link_to "Back to All Drivers", drivers_path %>
-<Br>
-<%= link_to "Homepage", "/" %>
 
 </main>

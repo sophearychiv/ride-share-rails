@@ -46,7 +46,7 @@ describe PassengersController do
           phone_num: "987",
         },
       }
-      passenger_to_update = Passenger.create(name: "Will Update Name", phone_num: 999, trip_id: nil)
+      passenger_to_update = Passenger.create(name: "Will Update Name", phone_num: "999", trip_id: nil)
 
       expect {
         patch passenger_path(passenger_to_update.id), params: edit_input
@@ -64,7 +64,7 @@ describe PassengersController do
           phone_num: 987,
         },
       }
-      passenger_to_update = Passenger.create(name: "Will update name", phone_num: 999, trip_id: nil)
+      passenger_to_update = Passenger.create(name: "Will update name", phone_num: "999", trip_id: nil)
 
       expect {
         patch passenger_path(passenger_to_update.id), params: edit_input
@@ -107,7 +107,7 @@ describe PassengersController do
     end
 
     it "can delete a passenger" do
-      new_passenger = Passenger.create(name: "new passenger", phone_num: 9999, trip_id: nil)
+      new_passenger = Passenger.create(name: "new passenger", phone_num: "9999", trip_id: nil)
       expect {
         delete passenger_path(new_passenger.id)
       }.must_change "Passenger.count", -1
