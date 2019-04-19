@@ -23,7 +23,11 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.create(passenger_id: Passenger.find_by(id: params[:passenger_id]).id, driver_id: Driver.find_by(availability: true).id, cost: rand(1...100), date: Date.today)
+    @trip = Trip.create(
+      passenger_id: Passenger.find_by(id: params[:passenger_id]).id,
+      driver_id: Driver.find_by(availability: true).id,
+      cost: rand(1...100), date: Date.today,
+    )
     # if @trip.save
     # redirect_to passenger_trip_path(params[:passenger_id])
     # raise
@@ -32,12 +36,13 @@ class TripsController < ApplicationController
       # raise
     end
     redirect_to "/passengers/#{params[:passenger_id]}/trips/#{@trip.id}"
+    # redirect_to passenger_trip_path(@trip.passenger_id, @trip.id)
     # else
   end
 
-  def edit
-    @trip = Trip.find_by(id: params[:id])
-  end
+  # def edit
+  #   @trip = Trip.find_by(id: params[:id])
+  # end
 
   def update
     trip = Trip.find_by(id: params[:id])
@@ -49,9 +54,9 @@ class TripsController < ApplicationController
     end
   end
 
-  private
+  # private
 
-  def trip_params
-    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
-  end
+  # def trip_params
+  #   return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
+  # end
 end
