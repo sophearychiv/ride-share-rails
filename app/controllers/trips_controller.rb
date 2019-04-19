@@ -46,23 +46,33 @@ class TripsController < ApplicationController
     # else
   end
 
-  # def edit
-  #   @trip = Trip.find_by(id: params[:id])
-  # end
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+  end
 
   def update
     trip = Trip.find_by(id: params[:id])
-    trip.rating = params[:trip][:rating]
-    if trip.save
-      redirect_to passengers_path
+
+    if params[:passenger_id]
+      trip.rating = params[:trip][:rating]
+      if trip.save
+        redirect_to passenger_path(params[:id])
+      end
     else
-      head :not_found
+      is_successful = trip.update(trip_params)
+      if is_successful
+        redirect_to trip_path(trip.id)
+      else
+        head :not_found
+      end
     end
+    raise
   end
 
-  # private
+  private
 
   # def trip_params
+  #   # return params.require(:trip).permit(:date, :rating, :cost)
   #   return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   # end
 end
