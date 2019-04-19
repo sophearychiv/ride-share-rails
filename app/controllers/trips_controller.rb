@@ -63,7 +63,7 @@ class TripsController < ApplicationController
       if is_successful
         redirect_to trip_path(trip.id)
       else
-        head :not_found
+        render :edit, status: :bad_request # need to write tests
       end
     end
   end
@@ -71,7 +71,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    # return params.require(:trip).permit(:date, :rating, :cost)
     return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
 end
