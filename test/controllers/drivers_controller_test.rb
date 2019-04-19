@@ -4,6 +4,9 @@ describe DriversController do
   let (:driver) {
     Driver.create name: "Jane Doe", vin: "12345678901234567"
   }
+  let (:invalid_id) {
+    "INVALID ID"
+  }
   describe "index" do
     it "can get index path" do
       # Your code here
@@ -47,7 +50,6 @@ describe DriversController do
   end
 
   describe "update" do
-    # Your tests go here
     it "can update an existing driver" do
       driver = Driver.first
       driver_hash = {
@@ -71,7 +73,7 @@ describe DriversController do
 
     it "will return a bad request if given an invalid id" do
       expect {
-        patch driver_path(-1)
+        patch driver_path(invalid_id)
       }.wont_change "Driver.count"
       must_respond_with :bad_request
     end

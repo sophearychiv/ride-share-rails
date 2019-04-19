@@ -120,7 +120,7 @@ describe TripsController do
     # must_respond_with :redirect
     # must_redirect_to passenger_trip_path(passenger_id, trip.id)
 
-    new_trip = Trip.find_by(passenger_id: passenger.id)
+    # new_trip = Trip.find_by(passenger_id: passenger.id)
     # expect(new_trip).wont_be_nil
     # expect(new_trip.date).must_equal Date.today
     # expect(new_trip.passenger_id).must_equal passenger_id
