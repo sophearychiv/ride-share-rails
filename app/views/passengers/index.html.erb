@@ -1,8 +1,18 @@
-<h1>Passengers Index View</h1>
-<h3><%= link_to "Return to Homepage", "/"%></h3>
-
-<% @passengers.each do |passenger|%>
-    <%= link_to passenger.name, passenger_path(passenger.id) %>
-    <br>
-    <%# TODO: THIS SHOULD BE LINKED TO PASSENGER DETAILS PAGE %>
-<% end %>
+<main class="list-all">
+    <div>
+        <h1>Ooobur Passengers</h1>
+        <h3><%= link_to "Return to Homepage", "/"%></h3>
+    </div>
+    <table>
+        <tr>
+          <th class="header">Name</th>
+          <th class="header">Image</th>
+        </tr>
+        <% @passengers.each do |passenger|%>
+        <tr>
+            <th><%= link_to passenger.name, passenger_path(passenger.id) %></th>
+            <th><img src="http://placekitten.com/100/100"></th>
+        </tr>
+        <% end %>  
+    </table>
+</main>

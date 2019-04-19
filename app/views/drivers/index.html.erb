@@ -1,10 +1,18 @@
-<h1>Drivers Index View</h1>
-
-<h3><%= link_to "Return to Homepage", "/"%></h3>
-
-
-<% @drivers.each do |driver| %>
-    <%= link_to driver.name, driver_path(driver) %>
-    <%# TODO: ADD LINK TO DRIVER DETAILS PAGE - SHOW METHOD %>
-     <br>
-<% end %>
+<main class="list-all">
+    <div>
+        <h1>Ooobur Drivers</h1>
+        <h3><%= link_to "Return to Homepage", "/"%></h3>
+    </div>
+    <table>
+        <tr>
+          <th class="header">Name</th>
+          <th class="header">Image</th>
+        </tr>
+        <% @drivers.each do |driver| %>
+        <tr>
+            <th><%= link_to driver.name, driver_path(driver) %></th>
+            <th><img src="https://picsum.photos/100/100"></th>
+        </tr>
+        <% end %>
+    </table>
+</main>
