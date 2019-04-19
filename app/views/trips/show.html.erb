@@ -14,7 +14,9 @@ Trip Passenger ID: <br>
 <%= @trip.passenger_id%><br>
 
 
-
+<%= link_to "Edit Trip", trip_path(@trip.id), method: :patch %>
 <%= link_to "Return to All Passengers", passengers_path %>
 <br>
 <%= link_to "Homepage", "/" %>
+
+<p>Testing</p>
