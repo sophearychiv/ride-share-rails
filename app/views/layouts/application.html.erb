@@ -12,7 +12,7 @@
   <body>
     <nav>
       <ul>
-        <li><h1>Ooobur</h1></li>
+        <li><h1><%= link_to "Ooobur", "/" %></h1></li>
         <li><%= link_to "All Passengers", passengers_path %></li>
         <li><%= link_to "All Drivers", drivers_path %></li>
         <li><%= link_to "Create New Passenger", new_passenger_path %></li>
@@ -22,6 +22,6 @@
     <main>
     <%= yield %>
     </main>
-    <footer> &copy; Sopheary and Angela; 2010</footer>
+    <footer> &copy; Sopheary and Angela; 2019</footer>
   </body>
 </html>
