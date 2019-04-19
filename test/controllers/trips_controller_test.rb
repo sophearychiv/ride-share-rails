@@ -38,9 +38,9 @@ describe TripsController do
     end
   end
 
-  describe "edit" do
-    # Your tests go here
-  end
+  # describe "edit" do
+  #   # Your tests go here
+  # end
 
   describe "update" do
     # Your tests go here
@@ -104,7 +104,6 @@ describe TripsController do
     it "passenger can create a new trip" do
       driver
       passenger
-      # p "show passenger #{passenger}"
       trip_to_create = {
         trip: {
           passenger_id: passenger.id,
@@ -115,20 +114,48 @@ describe TripsController do
       expect {
         post passenger_trips_path(passenger.id), params: trip_to_create
       }.must_change "Trip.count", 1
+
+      new_trip = Trip.where(passenger_id: passenger.id).last
+      expect(new_trip).wont_be_nil
+      expect(new_trip.date).must_equal Date.today
+      expect(new_trip.passenger_id).must_equal passenger.id
+      expect(new_trip.driver_id).must_equal driver.id
+      expect(new_trip.rating).must_be_nil
+
+      must_respond_with :redirect
+      must_redirect_to passenger_trip_path(passenger.id, new_trip.id)
     end
 
-    # must_respond_with :redirect
-    # must_redirect_to passenger_trip_path(passenger_id, trip.id)
+    it "must respond with 404 not_found if trying to create a trip with invalid data" do
+      # driver
+      passenger = Passenger.first
+      invalid_trip = {
+        trip: {
+          date: Date.today,
+          rating: nil,
+          cost: 45.50,
+          driver_id: nil,
+          passenger_id: -1,
+        },
+      }
 
-    new_trip = Trip.find_by(passenger_id: passenger.id)
-    # expect(new_trip).wont_be_nil
-    # expect(new_trip.date).must_equal Date.today
-    # expect(new_trip.passenger_id).must_equal passenger_id
-    # expect(new_trip.driver_id).must_equal driver.id
-    # expect(new_trip.rating).must_be_nil
+      expect {
+        post passenger_trips_path(passenger.id), params: invalid_trip
+      }.wont_change "Trip.count"
+
+      must_respond_with :not_found
+    end
   end
 
-  describe "destroy" do
-    # Your tests go here
-  end
+  # describe "destroy" do
+  #   # Your tests go here
+  #   it "will can delete the trip when the passenger is deleted" do
+  #     passenger
+  #     trip
+  #     expect {
+  #       delete passenger_path(passenger.id)
+  #     }.must_change "Trip.count", -1
+  #   end
+
+  # end
 end
