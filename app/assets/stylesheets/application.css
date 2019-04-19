@@ -17,7 +17,7 @@
 /* ----------------------- HOMEPAGE STYLING ----------------------- */
 /* HEADER/FOOTER styles */
  body {
-     font-family: 'Courier New', Courier, monospace;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
      display: grid;
      grid-template-rows: 100px 10fr 30px;
  }
@@ -81,7 +81,7 @@ main strong.tagline {
     font-size: 30px;
 }
 
-/* ----------------------- PASSENGER STYLING ----------------------- */
+/* ----------------------- PASSENGER/DRIVER INDEX STYLING ----------------------- */
 main.list-all {
     text-align: center;
     display: grid;
@@ -115,8 +115,43 @@ main.list-all th.header {
     font-weight: bolder;
 }
 
-/* ----------------------- DRIVER STYLING ----------------------- */
-/* main.driver > div {
+/* ----------------------- PASSENGER SHOW STYLING ----------------------- */
+main.show-one ul.person-info {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 170px 100%;
+    grid-template-rows: 100%;
+}
+main.show-one ul.person-info li:first-of-type{
+    grid-row: 1;
+    grid-column: 2;
+}
+main.show-one ul.person-info li {
+    grid-row: 1;
+    grid-column: 2;
+}
+#personal-info {
     display: flex;
     flex-direction: column;
-} */
+}
+
+main.show-one ul.person-info img{
+    grid-column: 1;
+}
+main.show-one div.request-trip {
+    margin-left: 40px;
+}
+
+main.show-one .table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+main.show-one table {
+    width: 95%;
+}
+main.show-one table, th, td {
+    border: 1px solid black;
+  }

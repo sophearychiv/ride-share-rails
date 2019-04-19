@@ -1,14 +1,18 @@
-<h1>Driver Show View</h1>
+<main class="show-one">
+
+    <ul class="personal-info">
+        <img src="https://picsum.photos/150/150" >
+        <div id="personal-info">
+            <li>Name: <%= @driver.name %></li>
+            <li>Driver ID: <%= @driver.id %> </li>
+            <li>VIN: <%= @driver.vin %> </li>
+        </div>
+    </ul>
 <%= button_to @driver.availability, driver_path(@driver.id), method: :patch %>
 
-<%= @driver.name %>
-<br>
-<%= @driver.vin %>
-<br>
 
 This is all the trips this driver went on: <br>
 <% @driver.all_trips.each do |trip |%>
-    <%# <%= trip.id %>
     <%= link_to "#{trip.id}", driver_trip_path(@driver.id, trip.id) %>,
     <%= trip.date %>
     <br>
@@ -27,3 +31,5 @@ $<%= @driver.total_earnings %>
 <%= link_to "Back to All Drivers", drivers_path %>
 <Br>
 <%= link_to "Homepage", "/" %>
+
+</main>
