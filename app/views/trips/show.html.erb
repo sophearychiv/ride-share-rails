@@ -1,23 +1,26 @@
-<h1>Trip Show View <%= @trip.id%></h1>
-Trip Date: <br>
-<%= @trip.date%>
-<br>
-Trip Rating: <br>
-<%= @trip.rating.to_i %><br>
-Trip cost: <br>
-<%= @trip.cost%> <br>
-
-Trip Driver ID: <br>
-<%= @trip.driver_id%> <br>
-
-Trip Passenger ID: <br>
-<%= @trip.passenger_id%><br>
-
-
-<%= link_to "Edit Trip", edit_trip_path(@trip.id) %>
-<%= link_to "Delete Trip", trip_path(@trip.id), :data => {:confirm => 'Are you sure you want to delete the trip?'}, method: :delete %>
-<%= link_to "Return to All Passengers", passengers_path %>
-<br>
-<%= link_to "Homepage", "/" %>
-
-<p>Testing</p>
+<main class="show-trip">
+    <h1>Trip #<%= @trip.id%></h1>
+    <table>
+        <tr>
+            <th>Trip ID</th>
+            <th>Date</th>
+            <th>Driver</th>
+            <th>Passenger</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Delete/Edit</th>
+        </tr>
+        <tr>
+            <th><%= @trip.id %></th>
+            <th><%= @trip.date %></th>
+            <th><%= @trip.driver.name %></th>
+            <th><%= @trip.passenger.name %></th>
+            <th><%= @trip.cost %></th>
+            <th><%= @trip.rating %></th>
+            <th>
+                <%= link_to "Edit", edit_trip_path(@trip.id) %>
+                <%= link_to "Delete", trip_path(@trip.id), :data => {:confirm => 'Are you sure you want to delete the trip?'}, method: :delete %>
+            </th>
+        </tr>
+    </table>
+</main>

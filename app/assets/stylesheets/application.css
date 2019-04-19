@@ -175,4 +175,18 @@ main.show-one .driver-status a {
     text-decoration: none;
 }
 
+/* ----------------------- Trip SHOW STYLING ----------------------- */
+main.show-trip th, td {
+    border: 1px solid black;
+  }
+main.show-trip h1 {
+    text-align: center;
+  }
+main.show-trip table {
+    width: 95%;
+    margin-left: 40px;
+    margin-bottom: 100px;
+}
+
+
 
