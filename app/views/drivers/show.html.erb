@@ -6,7 +6,7 @@
             <li>Name: <%= @driver.name %></li>
             <li>Driver ID: <%= @driver.id %> </li>
             <li>VIN: <%= @driver.vin %> </li>
-            <li>Average Rating: <%= @driver.average_rating %> </li>
+            <li>Average Rating: <%= @driver.average_rating.to_i %> </li>
             <li>$<%= @driver.total_earnings %></li>
             <li><%= link_to "Edit Driver", edit_driver_path(@driver.id)%></li>
             <li><%= link_to "Delete", driver_path(@driver.id), :data => {:confirm => 'Are you sure?'}, method: :delete%></li>
@@ -40,7 +40,7 @@
             <th> <%=trip.driver.name%> </th>
             <th><%= trip.passenger.name%> </th>
             <th>$<%= trip.cost%> </th>
-            <th><%= trip.rating%> </th>
+            <th><%= trip.rating.to_i%> </th>
             </tr>
         <% end %>
     </table>

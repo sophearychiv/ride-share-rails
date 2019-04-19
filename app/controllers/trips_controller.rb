@@ -66,7 +66,6 @@ class TripsController < ApplicationController
         head :not_found
       end
     end
-    raise
   end
 
   private
