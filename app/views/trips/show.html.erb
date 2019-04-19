@@ -15,7 +15,7 @@ Trip Passenger ID: <br>
 
 
 <%= link_to "Edit Trip", edit_trip_path(@trip.id) %>
-<%= link_to "Delete Trip", trip_path(@trip.id), method: :delete %>
+<%= link_to "Delete Trip", trip_path(@trip.id), :data => {:confirm => 'Are you sure you want to delete the trip?'}, method: :delete %>
 <%= link_to "Return to All Passengers", passengers_path %>
 <br>
 <%= link_to "Homepage", "/" %>

@@ -76,11 +76,15 @@ class TripsController < ApplicationController
     if trip.nil?
       head :not_found
     else
-      trip.destroy
-      if params[:passenger_id]
-        redirect_to passenger_path(params[:passenger_id])
-      elsif params[:driver_id]
-        redirect_to driver_path(params[:driver_id])
+      if trip.destroy
+        if params[:passenger_id]
+          redirect_to passenger_path(params[:passenger_id])
+        else #params[:driver_id]
+          redirect_to driver_path(params[:driver_id])
+        end
+      else
+        head :not_found
+        #:flash => {:error => "Unable to delete the trip"}
       end
     end
   end
