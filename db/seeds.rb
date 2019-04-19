@@ -19,6 +19,15 @@ CSV.foreach(DRIVER_FILE, :headers => true) do |row|
   end
 end
 
+i = 1
+while i < Driver.count
+  # driver = Driver.new
+  driver = Driver.find_by(id: i)
+  driver.availability = false
+  driver.save
+  i += 2
+end
+
 puts "Added #{Driver.count} driver records"
 puts "#{driver_failures.length} drivers failed to save"
 
