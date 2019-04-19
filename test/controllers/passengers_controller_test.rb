@@ -43,7 +43,7 @@ describe PassengersController do
       edit_input = {
         passenger: {
           name: "edited name",
-          phone_num: 987,
+          phone_num: "987",
         },
       }
       passenger_to_update = Passenger.create(name: "Will Update Name", phone_num: 999, trip_id: nil)
@@ -86,7 +86,7 @@ describe PassengersController do
       passenger_hash = {
         passenger: {
           name: "new passenger",
-          phone_num: 321,
+          phone_num: "321",
           trip_id: nil,
         },
       }
