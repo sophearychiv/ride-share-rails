@@ -133,7 +133,6 @@ describe DriversController do
   end
 
   describe "new" do
-    # Your tests go here
     it "can get a new driver page" do
       get new_driver_path
       must_respond_with :success
@@ -141,7 +140,6 @@ describe DriversController do
   end
 
   describe "create" do
-    # Your tests go here
     it "can create and save a new driver and redirect" do
       input_driver = {
         driver: {
@@ -180,7 +178,6 @@ describe DriversController do
   end
 
   describe "destroy" do
-    # Your tests go here
     it "can delete a driver" do
       driver = Driver.first
       expect {
