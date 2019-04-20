@@ -38,13 +38,21 @@ describe TripsController do
     end
   end
 
-  # describe "edit" do
-  #   # Your tests go here
-  # end
+  describe "edit" do
+    it "can get the edit page for an existing trip" do
+      trip
+      get edit_trip_path(trip.id)
+      must_respond_with :success
+    end
+
+    it "will return 404 not_found if trying to edit an invalid trip" do
+      get edit_trip_path(-1)
+      must_respond_with :not_found
+    end
+  end
 
   describe "update" do
-    # Your tests go here
-    it "allows passenger to rate the trip and doesn't change anything else" do
+    it "allows passenger to rate the trip on passenger's show page and doesn't change anything else" do
       trip_to_rate = trip
 
       updated_rating_input = {
@@ -58,11 +66,11 @@ describe TripsController do
       }
 
       expect {
-        patch passenger_trip_path(passenger.id, trip_to_rate.id), params: updated_rating_input
+        patch passenger_trip_path(trip.passenger_id, trip_to_rate.id), params: updated_rating_input
       }.wont_change "Trip.count"
 
       must_respond_with :redirect
-      must_redirect_to passengers_path
+      must_redirect_to passenger_trip_path(trip_to_rate.passenger.id, trip_to_rate.id)
 
       trip_to_rate.reload
       expect(trip_to_rate.date).must_equal updated_rating_input[:trip][:date]
@@ -72,7 +80,34 @@ describe TripsController do
       expect(trip_to_rate.passenger_id).must_equal updated_rating_input[:trip][:passenger_id]
     end
 
-    it "returns 404 not_found when user tries to rate the trip with invalid rating " do
+    it "allows the user to edit the trip on the trip's show page" do
+      trip_to_update = trip
+      user_input = {
+        trip: {
+          date: Date.today,
+          cost: 50.50,
+          driver_id: trip_to_update.driver_id,
+          passenger_id: trip_to_update.passenger_id,
+          rating: 5.0,
+        },
+      }
+
+      expect {
+        patch trip_path(trip_to_update.id), params: user_input
+      }.wont_change "Trip.count"
+
+      trip_to_update.reload
+      must_respond_with :redirect
+      must_redirect_to passenger_trip_path(trip_to_update.passenger_id, trip_to_update.id)
+
+      expect(trip_to_update.date).must_equal user_input[:trip][:date]
+      expect(trip_to_update.rating).must_equal user_input[:trip][:rating]
+      expect(trip_to_update.cost).must_equal user_input[:trip][:cost]
+      expect(trip_to_update.driver_id).must_equal user_input[:trip][:driver_id]
+      expect(trip_to_update.passenger_id).must_equal user_input[:trip][:passenger_id]
+    end
+
+    it "returns bad_request when user tries to rate the trip with invalid rating " do
       trip_to_rate = trip
 
       invalid_rating_input = {
@@ -88,10 +123,10 @@ describe TripsController do
         patch passenger_trip_path(trip.passenger_id, trip.id), params: invalid_rating_input
       }.wont_change "Trip.count"
 
-      must_respond_with :not_found
+      must_respond_with :bad_request
       trip_to_rate.reload
       expect(trip_to_rate.date).must_equal invalid_rating_input[:trip][:date]
-      expect(trip_to_rate.rating).must_equal nil
+      expect(trip_to_rate.rating).must_be_nil
       expect(trip_to_rate.cost).must_equal invalid_rating_input[:trip][:cost]
       expect(trip_to_rate.driver_id).must_equal invalid_rating_input[:trip][:driver_id]
       expect(trip_to_rate.passenger_id).must_equal invalid_rating_input[:trip][:passenger_id]
@@ -99,8 +134,6 @@ describe TripsController do
   end
 
   describe "create" do
-    # Your tests go here
-
     it "passenger can create a new trip" do
       driver
       passenger
@@ -127,7 +160,6 @@ describe TripsController do
     end
 
     it "must respond with 404 not_found if trying to create a trip with invalid data" do
-      # driver
       passenger = Passenger.first
       invalid_trip = {
         trip: {
@@ -147,15 +179,35 @@ describe TripsController do
     end
   end
 
-  # describe "destroy" do
-  #   # Your tests go here
-  #   it "will can delete the trip when the passenger is deleted" do
-  #     passenger
-  #     trip
-  #     expect {
-  #       delete passenger_path(passenger.id)
-  #     }.must_change "Trip.count", -1
-  #   end
+  describe "destroy" do
+    # Your tests go here
+    it "can delete the trip" do
+      trip
+      expect {
+        delete trip_path(trip.id)
+      }.must_change "Trip.count", -1
+    end
 
-  # end
+    it "can delete the trip when the passenger is deleted" do
+      passenger
+      trip
+      expect {
+        delete passenger_path(passenger.id)
+      }.must_change "Trip.count", -1
+    end
+
+    it "can delete the trip when the driver is deleted" do
+      driver
+      trip
+      expect {
+        delete driver_path(driver.id)
+      }.must_change "Trip.count", -1
+    end
+
+    it "returns 404 not_found if the trip is invalid" do
+      invalid_trip_id = -1
+      delete trip_path(invalid_trip_id)
+      must_respond_with :not_found
+    end
+  end
 end
