@@ -1,6 +1,10 @@
 <main class="list-all">
     <div>
         <h3>Passengers</h3>
+        <p class="flash">
+            <%= flash[:success] if flash[:success] %>
+            <%= flash[:error] if flash[:error] %>
+        </p>
     </div>
     <table id="index-table">
         <tr>

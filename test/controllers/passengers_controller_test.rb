@@ -36,6 +36,13 @@ describe PassengersController do
       get edit_passenger_path(passenger.id)
       must_respond_with :success
     end
+
+    it "will redirect to passengers_path when trying to edit an invalid passenger" do
+      get edit_passenger_path(-1)
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+      expect(flash[:error]).must_equal "Passenger id (-1) not found!"
+    end
   end
 
   describe "update" do

@@ -25,6 +25,9 @@ class PassengersController < ApplicationController
 
   def edit
     @passenger = Passenger.find_by(id: params[:id])
+    if @passenger.nil?
+      redirect_to passengers_path, :flash => { :error => "Passenger id (#{params[:id]}) not found!" }
+    end
   end
 
   def update
