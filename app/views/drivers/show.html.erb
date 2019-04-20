@@ -15,10 +15,13 @@
 
     <div class="driver-status">
         <% if @driver.availability == true %>
-            <%#= button_to @driver.availability, driver_path(@driver.id), method: :patch %>
-            <%= link_to "Go Offline", toggle_online_path(@driver.id, driver: {availability: false }), method: :patch %>
+            <div id="go-offline"> 
+                <%= link_to "Go Offline", toggle_online_path(@driver.id, driver: {availability: false }), method: :patch %>
+            </div>
         <% else %>
-            <%= link_to "Go Online", toggle_online_path(@driver.id, driver: {availability: true }), method: :patch %>
+            <div id="go-online">
+                <%= link_to "Go Online", toggle_online_path(@driver.id, driver: {availability: true }), method: :patch %>
+            </div>        
         <% end%>
     </div>
 

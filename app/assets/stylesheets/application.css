@@ -34,7 +34,7 @@
 /* NAV styles */
 nav {
     border: grey 1px solid;
-    background-color:lightgoldenrodyellow;
+    background-color:#4285f4;
     grid-row: 1;
  }
 nav ul {
@@ -59,15 +59,19 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     font-weight: bold;
-    color: lightgrey;
+    color: white;
     padding-top: 50px;
 }
-nav ul li a:visited {
-    color: grey;
-}
+
 nav ul li a:hover {
-    color: yellow;
+    text-decoration: underline;
 }
+
+nav ul li h1 > a:hover {
+    text-decoration: none;
+}
+
+
 
 /* MAIN homepage styling */
 main {
@@ -118,6 +122,10 @@ main.list-all table#index-table tr th, td {
 main.list-all th.header {
     font-size: 16px;
     font-weight: bolder;
+}
+
+.flash {
+    color: red;
 }
 
 /* ----------------------- PASSENGER/DRIVER SHOW STYLING ----------------------- */
@@ -175,6 +183,21 @@ main.show-one .driver-status a {
     text-decoration: none;
 }
 
+#go-offline > a, #go-online >a {
+    color: white;
+    padding: 0.5rem;
+    border-radius: 7px;
+
+}
+#go-offline > a {
+    /* border: 1px solid green; */
+    background-color: #dc3545;
+}
+
+#go-online  > a {
+    background-color: #007bff;
+}
+
 /* ----------------------- Trip SHOW STYLING ----------------------- */
 main.show-trip th, td {
     border: 1px solid black;
@@ -188,9 +211,7 @@ main.show-trip table {
     margin-bottom: 100px;
 }
 
-.flash {
-    color: red;
-}
+
 
 
 
