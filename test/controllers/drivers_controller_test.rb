@@ -23,7 +23,6 @@ describe DriversController do
   end
 
   describe "show" do
-    # Your tests go here
     it "returns 200 OK to show an existing valid driver" do
       valid_driver_id = driver.id
       get driver_path(valid_driver_id)
@@ -38,7 +37,6 @@ describe DriversController do
   end
 
   describe "edit" do
-    # Your tests go here
     it "can get the edit page for an existing driver" do
       get edit_driver_path(driver.id)
       must_respond_with :success
@@ -48,6 +46,7 @@ describe DriversController do
       get edit_driver_path(-1)
       must_respond_with :redirect
       must_redirect_to drivers_path
+      expect(flash[:error]).must_equal "Driver id (-1) not found!"
     end
   end
 
@@ -73,13 +72,14 @@ describe DriversController do
       expect(driver.vin).must_equal driver_hash[:driver][:vin]
     end
 
-    #DO WE NEED THIS TEST??
-    # it "will return a bad request if given an invalid id" do
-    #   expect {
-    #     patch driver_path(invalid_id)
-    #   }.wont_change "Driver.count"
-    #   must_respond_with :bad_request
-    # end
+    it "will return 404 not_found if given an invalid id" do
+      driver
+      invalid_id
+      expect {
+        patch driver_path(invalid_id)
+      }.wont_change "Driver.count"
+      must_respond_with :not_found
+    end
 
     it "will return a bad request if given an invalid name" do
       starter_input = {

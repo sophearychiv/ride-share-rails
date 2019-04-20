@@ -26,18 +26,22 @@ class DriversController < ApplicationController
   def edit
     @driver = Driver.find_by(id: params[:id])
     if @driver.nil?
-      redirect_to drivers_path
+      redirect_to drivers_path, :flash => { :error => "Driver id (#{params[:id]}) not found!" }
     end
   end
 
   def update
     driver = Driver.find_by(id: params[:id])
-    is_successful = driver.update(driver_params)
-    if is_successful
-      redirect_to driver_path(driver.id)
+    if driver.nil?
+      head :not_found
     else
-      @driver = driver
-      render :edit, status: :bad_request
+      is_successful = driver.update(driver_params)
+      if is_successful
+        redirect_to driver_path(driver.id)
+      else
+        @driver = driver
+        render :edit, status: :bad_request
+      end
     end
   end
 
@@ -58,13 +62,13 @@ class DriversController < ApplicationController
     driver = Driver.find_by(id: params[:id])
 
     if driver.nil?
-      redirect_to drivers_path  #, :flash => { :error => "Could not find task id: #{params[:id]}" }
+      redirect_to drivers_path
     else
       is_successful = driver.update(driver_params)
       if is_successful
         redirect_to driver_path(driver.id)
       else
-        redirect_to drivers_path #, :flash => { :error => "Could not update driver's status" }
+        redirect_to drivers_path
       end
     end
   end

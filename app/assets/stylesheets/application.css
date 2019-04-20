@@ -188,5 +188,9 @@ main.show-trip table {
     margin-bottom: 100px;
 }
 
+.flash {
+    color: red;
+}
+
 
 
