@@ -67,7 +67,6 @@ class DriversController < ApplicationController
         redirect_to drivers_path #, :flash => { :error => "Could not update driver's status" }
       end
     end
-    # raise
   end
 
   private

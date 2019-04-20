@@ -232,7 +232,6 @@ describe DriversController do
         },
       }
 
-      # patch driver_path(-1)
       patch toggle_online_path(-1), params: driver_hash
       must_respond_with :redirect
       must_redirect_to drivers_path

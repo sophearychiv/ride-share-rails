@@ -17,7 +17,6 @@ describe TripsController do
 
   describe "show" do
     passenger = Passenger.first
-    # Your tests go here
     it "should be 200 OK to show an existing valid trip from the passenger's view page" do
       get passenger_trip_path(passenger.id, trip.id)
       must_respond_with :success
@@ -159,6 +158,24 @@ describe TripsController do
       must_redirect_to passenger_trip_path(passenger.id, new_trip.id)
     end
 
+    it "changes the associated driver's availability to false when a new trip is created" do
+      driver
+      passenger
+      trip_to_create = {
+        trip: {
+          passenger_id: passenger.id,
+          driver_id: driver.id,
+        },
+      }
+
+      expect {
+        post passenger_trips_path(passenger.id), params: trip_to_create
+      }.must_change "Trip.count", 1
+
+      new_trip = Trip.where(passenger_id: passenger.id).last
+      expect(new_trip.driver.availability).must_equal false
+    end
+
     it "must respond with 404 not_found if trying to create a trip with invalid data" do
       passenger = Passenger.first
       invalid_trip = {
@@ -180,7 +197,6 @@ describe TripsController do
   end
 
   describe "destroy" do
-    # Your tests go here
     it "can delete the trip" do
       trip
       expect {

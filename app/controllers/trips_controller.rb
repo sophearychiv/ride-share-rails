@@ -1,8 +1,4 @@
 class TripsController < ApplicationController
-  # def index
-  #   @trips = Trip.all.order(:id)
-  # end
-
   def show
     @trip = Trip.find_by(id: params[:id])
 
@@ -19,7 +15,7 @@ class TripsController < ApplicationController
         driver_id: driver.id,
         cost: rand(1...100), date: Date.today,
       )
-      driver.update(availability: false) # added tests
+      driver.update(availability: false)
       redirect_to passenger_trip_path(params[:passenger_id], @trip.id)
     else
       head :not_found
