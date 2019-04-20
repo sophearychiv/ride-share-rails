@@ -20,6 +20,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
      display: grid;
      grid-template-rows: 100px 10fr 30px;
+     margin: 0;
  }
 
  footer {
