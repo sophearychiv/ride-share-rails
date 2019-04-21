@@ -41,7 +41,7 @@
             <th><%= link_to "#{trip.id}", driver_trip_path(@driver.id, trip.id) %></th>
             <th><%= trip.date %></th>
             <th> <%=trip.driver.name%> </th>
-            <th><%= trip.passenger.name%> </th>
+            <th><%= link_to "#{trip.passenger.name}", passenger_path(trip.passenger_id)%> </th>
             <th>$<%= trip.cost%> </th>
             <th><%= trip.rating.to_i%> </th>
             </tr>

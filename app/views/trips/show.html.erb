@@ -13,8 +13,8 @@
         <tr>
             <th><%= @trip.id %></th>
             <th><%= @trip.date %></th>
-            <th><%= @trip.driver.name %></th>
-            <th><%= @trip.passenger.name %></th>
+            <th><%= link_to "#{@trip.driver.name}", driver_path(@trip.driver_id) %></th>
+            <th><%= link_to "#{@trip.passenger.name}", passenger_path(@trip.passenger.id) %></th>
             <th><%= @trip.cost %></th>
             <th><%= @trip.rating %></th>
             <th>
