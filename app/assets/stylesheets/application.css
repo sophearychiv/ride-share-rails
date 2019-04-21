@@ -147,8 +147,9 @@ main strong.tagline {
 /* ----------------------- PASSENGER/DRIVER INDEX STYLING ----------------------- */
 
 .h1-block > h1 {
-    text-align: center;
+    text-align: left;
     margin: 3rem;
+    margin-left: 9rem;
 }
 
 .index-list {
@@ -161,7 +162,7 @@ main strong.tagline {
 
 .index-list li {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 20rem 20rem auto;
     list-style-type: none;
     padding: 1rem;
 }
@@ -176,12 +177,13 @@ main strong.tagline {
 }
 
 .index-list li:nth-child(2) {
+    
     padding-top: 3rem;
     
 }
 
 .index-list li:first-child span {
-    margin-right: 11.5rem;
+    margin-left: .5rem;
     padding: 0.5rem;
 }
 

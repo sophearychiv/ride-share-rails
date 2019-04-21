@@ -16,6 +16,7 @@
         <li>
             <span><img src="https://picsum.photos/100/100"></span>
             <span><%= link_to driver.name, driver_path(driver) %></span>
+            <span><%= link_to "Edit", edit_driver_path(driver.id) %> / <%= link_to "Delete", driver_path(driver.id), method: :delete, data: {confirm: "Are you sure you'd like to delete this passenger?"} %> </span>
         </li>
         <% end %>
     </ul>
