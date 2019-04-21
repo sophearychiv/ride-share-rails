@@ -274,7 +274,7 @@ main.show-one .driver-status a {
 
 div.request-trip > a {
     border: 1px solid rgb(167, 163, 163);
-    background-color: rgb(186, 186, 186, 0.3);
+    background-color: rgba(199, 195, 195, 0.808);
     padding: .5rem;
     text-decoration: none;
     color: black;
