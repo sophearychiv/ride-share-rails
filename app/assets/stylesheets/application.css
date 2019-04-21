@@ -16,7 +16,11 @@
 
 /* ----------------------- HOMEPAGE STYLING ----------------------- */
 /* HEADER/FOOTER styles */
- body {
+
+    /* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+ 
+body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
      display: grid;
      grid-template-rows: 100px 10fr 30px;
@@ -43,20 +47,24 @@ nav ul {
     height: 100px;
     list-style: none;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
 
 }
+
+nav ul li {
+    padding-top: 50px;
+    height: 100px;
+}
+
 nav ul li:first-child {
     padding-top: 5px;
+    padding-right: 1rem;
     font-size: 30px;
     height: 100px;
 }
 
-nav ul li {
-    padding-top: 60px;
-    height: 100px;
-}
+
 nav ul li a {
     text-decoration: none;
     font-weight: bold;
@@ -70,6 +78,52 @@ nav ul li a:hover {
 
 nav ul li h1 > a:hover {
     text-decoration: none;
+}
+
+
+.dropdown .dropbtn {
+font-size: 20px;  
+border: none;
+outline: none;
+color: white;
+padding: 14px 16px;
+background-color: inherit;
+font-family: inherit;
+margin: 0;
+}
+
+.fa-caret-down {
+    margin-left: .3rem;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+cursor: pointer;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+float: none;
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+text-align: left;
+}
+
+.dropdown-content a:hover {
+background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+display: block;
 }
 
 

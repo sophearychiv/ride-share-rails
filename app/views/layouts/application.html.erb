@@ -12,11 +12,21 @@
   <body>
     <nav>
       <ul>
-        <li><h1><%= link_to "Ooobur", "/" %></h1></li>
-        <li><%= link_to "All Passengers", passengers_path %></li>
-        <li><%= link_to "All Drivers", drivers_path %></li>
-        <li><%= link_to "Create New Passenger", new_passenger_path %></li>
-        <li><%= link_to "Create New Driver", new_driver_path %></li>
+        <li><h1><%= link_to "Ooobur", "/" %> </h1></li>
+        <li class="dropdown">
+          <button class="dropbtn">Passengers<i class="fa fa-caret-down"></i></button>
+          <div class="dropdown-content"> 
+            <%= link_to "All Passengers", passengers_path %>
+            <%= link_to "Create New Passenger", new_passenger_path %>
+          </div>
+        </li>
+        <li class="dropdown">
+          <button class="dropbtn">Drivers<i class="fa fa-caret-down"></i></button>
+          <div class="dropdown-content"> 
+            <%= link_to "All Drivers", drivers_path %>
+            <%= link_to "Create New Driver", new_driver_path %>
+          </div>
+        </li>
       </ul>
     </nav>
     <main>
