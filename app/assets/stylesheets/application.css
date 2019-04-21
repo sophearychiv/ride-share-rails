@@ -245,22 +245,41 @@ main.show-one .driver-status a {
 
 }
 #go-offline > a {
-    /* border: 1px solid green; */
     background-color: #dc3545;
 }
 
 #go-online  > a {
-    background-color: #007bff;
+    background-color: #4285f4;
 }
 
-.button_to > input {
-    background-color: #ddd;
-    padding: 0.5rem;
+
+.request-trip > .trip-rating {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
 }
 
-.button_to > input:hover {
-    cursor: pointer;
+.request-trip > .trip-rating > #trip_rating {
+    width: 2rem;
+    height: 1rem;
 }
+
+.request-trip > .trip-rating > .trip_rating_btn {
+    width: 4rem;
+}
+
+.request-trip > .trip-rating > label {
+    margin-top: 0;
+}
+
+div.request-trip > a {
+    border: 1px solid rgb(167, 163, 163);
+    background-color: rgb(186, 186, 186, 0.3);
+    padding: .5rem;
+    text-decoration: none;
+    color: black;
+}
+
 
 /* ----------------------- Trip SHOW STYLING ----------------------- */
 main.show-trip th, td {
@@ -274,6 +293,34 @@ main.show-trip table {
     margin-left: 40px;
     margin-bottom: 100px;
 }
+
+/* ----------------------- Form STYLING ----------------------- */
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+}
+
+form > p {
+    font-size: 2rem;
+}
+
+input, select {
+    width: 20rem;
+    height: 1.5rem;
+}
+
+.submit-btn {
+    margin-top: 1rem;
+    width: 5rem;
+    background-color: #ddd;
+} 
+
+label {
+    margin-top: 1rem;
+}
+
 
 
 

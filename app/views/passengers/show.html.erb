@@ -14,13 +14,13 @@
 
     <div class="request-trip">
     <% if @passenger.trips.empty? || !@passenger.trips.last.rating.nil? %>
-        <%= button_to "Request a Ride", passenger_trips_path(@passenger.id), method: :post %>
+        <%= link_to "Request a Ride", passenger_trips_path(@passenger.id), method: :post %>
 
     <% elsif @passenger.trips.last.rating.nil? %>
         <%= form_with model: @passenger.all_trips.last, class: "trip-rating" do |f| %>
             <%= f.label :rating %>
             <%= f.text_field :rating %>
-            <%= f.submit "Submit Rating", class: "trip_rating_btn", method: :patch%>
+            <%= f.submit "Submit", class: "trip_rating_btn", method: :patch%>
         <% end %>
     <% end %>
     </div>
