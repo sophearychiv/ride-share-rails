@@ -145,39 +145,46 @@ main strong.tagline {
 }
 
 /* ----------------------- PASSENGER/DRIVER INDEX STYLING ----------------------- */
-main.list-all {
-    border: black 1px solid;
-    margin-top: 10px;
+
+.h1-block > h1 {
     text-align: center;
-    display: grid;
-    grid-template: 100px 1fr / 1fr;
-
-}
-main.list-all > div {
-    height: 50px;
-}
-main.list-all h3 {
-    grid-row: 1;
-    grid-column: 1;
+    margin: 3rem;
 }
 
-main.list-all > table {
-    grid-row: 2;
+.index-list {
+    display: block;
+    overflow-y: scroll;
+    height: 70vh;
     width: 80%;
-    margin-left: 10%;
+    margin: auto;
+}
 
+.index-list li {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style-type: none;
+    padding: 1rem;
 }
-main.list-all th a {
-    font-size: 14px;
-    text-decoration: none;
+
+.index-list li:first-child {
+    color: #4285f4;
+    font-size: 1.2rem;
+    background-color: #e5e6e9;
+    padding: 0;
+    position: absolute;
+    
 }
-main.list-all table#index-table tr th, td {
-    border-bottom: 1px solid #ddd;
+
+.index-list li:nth-child(2) {
+    padding-top: 3rem;
+    
 }
-main.list-all th.header {
-    font-size: 16px;
-    font-weight: bolder;
+
+.index-list li:first-child span {
+    margin-right: 11.5rem;
+    padding: 0.5rem;
 }
+
 
 .flash {
     color: red;

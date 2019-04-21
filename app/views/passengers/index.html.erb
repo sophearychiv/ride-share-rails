@@ -1,21 +1,23 @@
 <main class="list-all">
-    <div>
-        <h3>Passengers</h3>
-        <p class="flash">
+    <div class="h1-block">
+        <h1>Passengers</h1>
+         <p class="flash">
             <%= flash[:success] if flash[:success] %>
             <%= flash[:error] if flash[:error] %>
         </p>
     </div>
-    <table id="index-table">
-        <tr>
-          <th class="header">Name</th>
-          <th class="header">Image</th>
-        </tr>
+    <ul class="index-list">
+        <li>
+                <span class="header">Image</span>
+                <span class="header">Name</span>
+                <span class="header">Edit / Delete</span>
+        </li>
         <% @passengers.each do |passenger|%>
-        <tr>
-            <th><%= link_to passenger.name, passenger_path(passenger.id) %></th>
-            <th><img src="http://placekitten.com/100/100"></th>
-        </tr>
-        <% end %>  
-    </table>
+        <li>
+            <span><img src="http://placekitten.com/100/100"></span>
+            <span><%= link_to passenger.name, passenger_path(passenger.id) %></span>
+            <span><%= link_to "Edit", edit_passenger_path(passenger.id) %> / <%= link_to "Delete", passenger_path(passenger.id), method: :delete, data: {confirm: "Are you sure you'd like to delete this passenger?"} %> </span>
+        </li>
+        <% end %>
+    </ul>
 </main>
