@@ -35,6 +35,7 @@
                 <th>Passenger</th>
                 <th>Price</th>
                 <th>Rating</th>
+                <th>Edit/Delete Trip </th>
             </tr>
             <% @passenger.all_trips.each do |trip|%>
                 <tr>
@@ -44,6 +45,10 @@
                 <th><%= trip.passenger.name%> </th>
                 <th>$<%= trip.cost%> </th>
                 <th><%= trip.rating.to_i%> </th>
+                <th>
+                    <%= link_to "Edit", edit_trip_path(trip.id) %>
+                    <%= link_to "Delete", trip_path(trip.id), :data => {:confirm => 'Are you sure you want to delete the trip?'}, method: :delete %>
+                </th>
                 </tr>
             <% end %>
         </table>
